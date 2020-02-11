@@ -4,13 +4,6 @@
     {{ $player->first_name }} {{ $player->last_name }}
 @endsection
 
-@section('header-title')
-    {{ $player->first_name }} {{ $player->last_name }}
-@endsection
-
-@section('header-desc')
-    Page for {{ $player->first_name }} {{ $player->last_name }}
-@endsection
 
 @section('content')
 

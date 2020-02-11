@@ -4,13 +4,6 @@
     {{ $team->name }}
 @endsection
 
-@section('header-title')
-    {{ $team->name }}
-@endsection
-
-@section('header-desc')
-    Page for {{ $team->name }}
-@endsection
 
 @section('content')
 
@@ -28,5 +21,32 @@
             @endforeach
         </ul>
     </div>
+
+    <hr>
+    <ul class="unstyled">
+        @foreach ($team->comments as $comment)
+            <li>
+                <p>
+                    <a href="#" >{{ $comment->user->name }}</a>
+
+                    {{ $comment->content }}
+                </p>
+            </li>
+        @endforeach
+    </ul>
+    <hr>
+    <h2>Leave a comment</h2>
+
+    <form method="POST" action="{{ route('team-comments', ['team_id' => $team->id]) }}">
+        {{ csrf_field() }}
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea type="email" class="form-control" id="content" name="content"></textarea>
+            @include('partials.error-message', ['fieldTitle' => 'content'])
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
 
 @endsection
