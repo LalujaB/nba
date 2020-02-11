@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'homepage', 'uses' => 'TeamController@index']);
+
+Route::get('/teams/{id}', ['as' => 'single-team', 'uses' => 'TeamController@show']);
+
+Route::get('/players/{id}', ['as' => 'single-player', 'uses' => 'PlayerController@show']);

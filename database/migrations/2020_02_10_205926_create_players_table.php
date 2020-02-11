@@ -21,7 +21,7 @@ class CreatePlayersTable extends Migration
             $table->unsignedBigInteger('team_id');
             $table->foreign('team_id')
                 ->references('id')
-                ->on('teams')
+                ->on('players')
                 ->onDelete('cascade');
             $table->timestamps();
         });
