@@ -16,3 +16,10 @@ Route::get('/', ['as' => 'homepage', 'uses' => 'TeamController@index']);
 Route::get('/teams/{id}', ['as' => 'single-team', 'uses' => 'TeamController@show']);
 
 Route::get('/players/{id}', ['as' => 'single-player', 'uses' => 'PlayerController@show']);
+
+Route::get('/register', ['as' => 'register', 'uses'=> 'RegisterController@create']);
+Route::post('/register', ['as' => 'register', 'uses' => 'RegisterController@store']);
+
+Route::get('/login', ['as' => 'login', 'uses' => 'LoginController@create']);
+Route::post('/login', 'LoginController@store');
+Route::get('/logout', ['as' => 'logout', 'uses' => 'LoginController@destroy']);
