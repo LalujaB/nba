@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -28,9 +29,29 @@ class LoginController extends Controller
 
         } else {
 
-            return redirect()->route('homepage');
+            if(auth()->user()->is_verified) {
 
+                return redirect()->route('homepage');
+
+            } else {
+
+                $this->destroy();
+
+                return back()->withErrors(['message' => 'You are not verified, please check your email for verification!']);
+
+            }
         }
+
+    }
+
+    public function verification ($id) {
+
+        $user = User::find($id);
+
+        $user->is_verified = true;
+        $user->save();
+
+        return view('login.verification', compact('user'));
 
     }
 

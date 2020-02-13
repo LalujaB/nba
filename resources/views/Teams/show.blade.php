@@ -22,6 +22,8 @@
         </ul>
     </div>
 
+    <h3>Comments:</h3>
+
     <hr>
     <ul class="unstyled">
         @foreach ($team->comments as $comment)
