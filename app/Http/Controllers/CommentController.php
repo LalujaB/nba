@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Mail\CommentRecived;
 use App\Team;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -49,7 +51,9 @@ class CommentController extends Controller
 
         $team = Team::find($team_id);
 
-        Comment::create(array(
+        Mail::to($team)->send(new CommentRecived($team));
+
+        $comment = Comment::create(array(
             'content' => $request->get('content'),
             'team_id' => $team->id,
             'user_id' => Auth::user()->id,
