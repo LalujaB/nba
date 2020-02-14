@@ -27,3 +27,6 @@ Route::get('/logout', ['as' => 'logout', 'uses' => 'LoginController@destroy']);
 Route::post('/teams/{team_id}/comments', ['as' => 'team-comments', 'uses' => 'CommentController@store']);
 
 Route::get('/verification/{id}', ['as' => 'verification', 'uses' => 'LoginController@verification']);
+
+Route::get('/news', ['as' => 'news', 'uses' => 'NewsController@index']);
+Route::get('/news/{id}', ['as' => 'single-news', 'uses' => 'NewsController@show']);
